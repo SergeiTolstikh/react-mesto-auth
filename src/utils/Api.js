@@ -1,4 +1,4 @@
-export default class Api {
+class Api {
     constructor({ baseUrl, groupId, token }) {
         this._address = `${baseUrl}/${groupId}`;
         this._token = token;
@@ -107,4 +107,17 @@ export default class Api {
         }
         return Promise.reject(`Ошибка ${res.status}: ${res.message}`);
     }
+
+    getPageInfo() {
+        return Promise.all([this.getUserInfo(), this.getInitialCards()]);
+      }
+
 }
+
+const api = new Api({
+    baseUrl: 'https://mesto.nomoreparties.co/v1',
+    groupId: 'cohort-28',
+    token: '7ab77057-a030-4fc1-abd5-bdd9c6f29070',
+  });
+
+export default api

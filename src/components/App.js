@@ -2,7 +2,9 @@ import React from "react";
 import Header from "./Header";
 import Footer from "./Footer";
 import Main from "./Main";
+import ImagePopup from "./ImagePopup";
 import PopupWithForm from "./PopupWithForm";
+
 
 function App() {
 
@@ -43,7 +45,7 @@ function App() {
 
 
   return (
-    <div className="App">
+    <div className="App" style={{backgroundColor: 'rgba(0, 0, 0, 1)'}}>
       <Header />
       <Main
         onEditAvatar={handleEditAvatarClick}
@@ -53,10 +55,16 @@ function App() {
         onCardDelete={handleDeleteCardClick}
       />
       <Footer />
+
+      <ImagePopup
+          card={selectedCard}
+          onClose={closeAllPopups}
+          />
+
       <PopupWithForm
         isOpen={isEditProfilePopupOpen}
         onClose={closeAllPopups}
-        form={'profile-form'}
+        name={"profile"}
         idform={'profile-popup-form'}
         title={'Редактировать профиль'}
         popupid={'profile-popup'}
@@ -95,7 +103,7 @@ function App() {
       <PopupWithForm
         isOpen={isAddPlacePopupOpen}
         onClose={closeAllPopups}
-        form={'place-form'}
+        name={"gallery"}
         idform={'gallery-popup-form'}
         title={'Новое место'}
         popupid={'gallery-popup'}
@@ -134,8 +142,7 @@ function App() {
       <PopupWithForm
         isOpen={isEditAvatarPopupOpen}
         onClose={closeAllPopups}
-        name={"popup__form_modificator"}
-        form={'avatarr'}
+        name={"avatar"}
         idform={'avatar-popup-form'}
         title={'Обновить аватар'}
         popupid={'popup-avatar'}
@@ -163,8 +170,7 @@ function App() {
       <PopupWithForm
         isOpen={isDeleteCardPopupOpen}
         onClose={closeAllPopups}
-        name={"popup__form_modificator"}
-        form={'delete'}
+        name={"confirm"}
         idform={'confirm-popup-form'}
         title={'Вы уверены?'}
         popupid={'popup-delete-confirm'}

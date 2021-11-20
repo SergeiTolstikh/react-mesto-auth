@@ -1,0 +1,38 @@
+.gallery__card {
+  background-color: #fff;
+  border-radius: 10px 10px 10px 10px;
+  display: grid;
+  grid-template-columns: 1fr 62px;
+  grid-template-rows: auto 39.5px 39.5px;
+  margin: 0;
+  overflow: hidden;
+  position: relative;
+}
+
+@media screen and (max-width: 977px) {
+  .gallery__card {
+    grid-template-columns: 1fr calc(42px + (62 - 42) * ((100vw - 636px) / 341));
+  }
+}
+
+@media screen and (max-width: 635px) {
+  .gallery__card {
+    grid-template-columns: 1fr calc(42px + (62 - 42) * ((100vw - 426px) / 209));
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .gallery__card {
+    grid-template-columns: 1fr calc(62px + (84.9 - 62) * ((100vw - 320px) / 105));
+    border-top-left-radius: calc(10px + (15 - 10) * ((100vw - 320px) / 105));
+    border-top-right-radius: calc(10px + (15 - 10) * ((100vw - 320px) / 105));
+    border-bottom-left-radius: calc(10px + (15 - 10) * ((100vw - 320px) / 105));
+    border-bottom-right-radius: calc(10px + (15 - 10) * ((100vw - 320px) / 105));
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .gallery__card {
+    border-radius: 10px 10px 10px 10px;
+  }
+}

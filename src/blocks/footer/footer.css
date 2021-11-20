@@ -1,0 +1,26 @@
+.footer {
+    margin: auto;
+    padding: 0 48px 60px 48px;
+}
+
+@media screen and (max-width: 976px) {
+    .footer {
+        padding-right: calc(27px + (48 - 27) * ((100vw - 768px) / 208));
+        padding-left: calc(27px + (48 - 27) * ((100vw - 768px) / 208));
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .footer {
+        padding-right: calc(19px + (27 - 19) * ((100vw - 636px) / 132));
+        padding-bottom: calc(36px + (60 - 36) * ((100vw - 320px) / 448));
+        padding-left: calc(19px + (27 - 19) * ((100vw - 636px) / 132));
+    }
+}
+
+@media screen and (max-width: 635px) {
+    .footer {
+        padding-right: 19px;
+        padding-left: 19px;
+    }
+}

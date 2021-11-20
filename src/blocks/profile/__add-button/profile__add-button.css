@@ -1,0 +1,58 @@
+.profile__add-button {
+    background-image: url(../../../images/AddButton.svg);
+    /*исправлено*/
+    background-size: 22px;
+    background-color: transparent;
+    background-position: 50%;
+    border: 2px solid #fff;
+    border-radius: 2px;
+    background-repeat: no-repeat;
+    width: 150px;
+    height: 50px;
+    grid-column: 4/5;
+    grid-row: 2/3;
+    justify-self: end;
+    align-self: center;
+    cursor: pointer;
+    /*исправлено*/
+}
+
+.profile__add-button:hover {
+    opacity: 0.6;
+    /*исправлено*/
+    transition: 0.3s;
+}
+
+@media screen and (max-width: 977px) {
+    .profile__add-button {
+        width: calc(99px + (150 - 99) * ((100vw - 636px) / 341));
+        height: calc(33px + (50 - 33) * ((100vw - 636px) / 341));
+        background-size: calc(16px + (22 - 16) * ((100vw - 636px) / 341));
+    }
+}
+
+@media screen and (max-width: 635px) {
+    .profile__add-button {
+        background-size: 16px;
+        grid-column: 1/5;
+        grid-row: 4/5;
+        width: 282px;
+        height: 50px;
+        justify-self: center;
+        align-self: end;
+    }
+}
+
+@media screen and (max-width:425px) {
+    .profile__add-button {
+        grid-column: 1/6;
+        grid-row: 4/5;
+    }
+}
+
+@media screen and (max-width:320px) {
+    .profile__add-button {
+        width: calc(262px + (282 - 262) * ((100vw - 300px) / 20));
+        height: calc(47px + (50 - 47) * ((100vw - 300px) / 20));
+    }
+}

@@ -1,0 +1,17 @@
+.popup__form {
+    margin-left: 19px;
+    margin-right: 19px;
+    background-color: #fff;
+    border-radius: 10px;
+    display: grid;
+    grid-template-columns: 36px minmax(100px, 358px) 36px;
+    grid-template-rows: 116px auto auto;
+  }
+  
+  @media screen and (max-width: 468px) {
+    .popup__form {
+      grid-template-columns: calc(22px + (36 - 22) * ((100vw - 320px) / 148)) minmax(100px, 358px) calc(22px + (36 - 22) * ((100vw - 320px) / 148));
+      grid-template-rows: calc(121px + (116 - 121) * ((100vw - 320px) / 148)) auto auto;
+    }
+  }
+  

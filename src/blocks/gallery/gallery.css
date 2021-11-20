@@ -1,0 +1,23 @@
+.gallery {
+    padding: 47.25px 0 67px 0;
+    margin: auto;
+    max-width: 880px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    grid-gap: 20px 17px;
+}
+
+@media screen and (max-width: 635px) {
+    .gallery {
+        grid-template-columns: 1fr 1fr;
+        padding: 36px 0 calc(48px + (67 - 48) * ((100vw - 425px) / 210)) 0;
+    }
+}
+
+@media screen and (max-width: 425px) {
+    .gallery {
+        grid-template-columns: 1fr;
+        padding-bottom: 48px;
+    }
+}

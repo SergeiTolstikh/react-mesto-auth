@@ -1,0 +1,19 @@
+.popup__error {
+    display: none;
+    color: rgba(255, 0, 0, 1);
+    font-family: 'Inter', 'Arial', 'sans-serif';
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 14px;
+    position: absolute;
+    left: 0;
+}
+
+.popup__error:first-of-type {
+    top: 30px;
+}
+
+.popup__error:last-of-type {
+    top: 87px;
+}

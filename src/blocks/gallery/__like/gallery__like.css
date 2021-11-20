@@ -1,0 +1,20 @@
+.gallery__like {
+    background-image: url(../../../images/gallery__like__hole.svg);
+    background-color: transparent;
+    background-repeat: no-repeat;
+    background-size: contain;
+    border: 0px;
+    width: 22px;
+    height: 19px;
+    grid-column: -1/-2;
+    align-self: center;
+    margin: auto;
+    margin-top: 22px;
+    outline: none;
+    cursor: pointer;
+}
+
+.gallery__like:hover {
+    opacity: 0.5;
+    transition: 0.3s;
+}

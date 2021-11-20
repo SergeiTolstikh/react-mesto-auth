@@ -1,0 +1,5 @@
+.popup__container_overlay {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}

@@ -1,0 +1,13 @@
+.gallery__text {
+    font-family: 'Inter', 'Arial', 'sans-serif';
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 900;
+    line-height: 29px;
+    text-align: left;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    padding: 25px 0 28px 21px;
+    margin: 0; 
+}

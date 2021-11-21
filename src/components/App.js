@@ -69,8 +69,8 @@ function App() {
         title={'Редактировать профиль'}
         popupid={'profile-popup'}
         idsubmit={'popup-button-profile'}
-        submit={'Сохранить'}
-        children={(
+        submit={'Сохранить'}>
+        
           <>
             <fieldset className="popup__input-container">
               <input
@@ -97,8 +97,8 @@ function App() {
               <span className="popup__error popup__info-error" />
             </fieldset>
           </>
-        )}
-      />
+        
+      </PopupWithForm>
 
       <PopupWithForm
         isOpen={isAddPlacePopupOpen}
@@ -108,8 +108,8 @@ function App() {
         title={'Новое место'}
         popupid={'gallery-popup'}
         idsubmit={'popup-button-gallery'}
-        submit={'Создать'}
-        children={(
+        submit={'Создать'}>
+        
           <>
             <fieldset className="popup__input-container">
               <input
@@ -136,8 +136,8 @@ function App() {
               <span className="popup__error popup__picture-error" />
             </fieldset>
           </>
-        )}
-      />
+        
+      </PopupWithForm>
 
       <PopupWithForm
         isOpen={isEditAvatarPopupOpen}
@@ -147,8 +147,8 @@ function App() {
         title={'Обновить аватар'}
         popupid={'popup-avatar'}
         idsubmit={'popup-button-avatar'}
-        submit={'Сохранить'}
-        children={(
+        submit={'Сохранить'}>
+        
           <>
             <fieldset className="popup__input-container">
               <input
@@ -164,8 +164,8 @@ function App() {
               <span className="popup__error popup__error_position popup__avatar-input-error" />
             </fieldset>
           </>
-        )}
-      />
+        
+      </PopupWithForm>
 
       <PopupWithForm
         isOpen={isDeleteCardPopupOpen}

@@ -13,7 +13,7 @@ function App() {
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = React.useState(false)
   const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = React.useState(false)
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = React.useState(false)
-  const [isDeleteCardPopupOpen, setisDeleteCardPopupOpen] = React.useState(false)
+  //const [isDeleteCardPopupOpen, setisDeleteCardPopupOpen] = React.useState(false)
   const [selectedCard, setSelectedCard] = React.useState(null)
   const [currentUser, setCurrentUser] = React.useState({})
   const [cards, setCards] = React.useState([])
@@ -32,7 +32,7 @@ function App() {
 
 
 
-  function handleCardLike(card) {
+  /*function handleCardLike(card) {
     const isLiked = card.likes.some(i => i._id === currentUser._id)
 
     if (!isLiked) {
@@ -52,7 +52,7 @@ function App() {
                 console.log(`Ошибка при отмене лайка: ${err}`)
             })
     }
-}
+}*/
 
 
   function handleCardClick(card) {
@@ -71,15 +71,15 @@ function App() {
     setIsAddPlacePopupOpen(true)
   }
 
-  function handleDeleteCardClick() {
+  /*function handleDeleteCardClick() {
     setisDeleteCardPopupOpen(true)
-  }
+  }*/
 
   function closeAllPopups() {
     setIsEditAvatarPopupOpen(false)
     setIsEditProfilePopupOpen(false)
     setIsAddPlacePopupOpen(false)
-    setisDeleteCardPopupOpen(false)
+    //setisDeleteCardPopupOpen(false)
     setSelectedCard(null)
   }
 
@@ -95,8 +95,8 @@ function App() {
           onAddPlace={handleAddPlaceClick}
           cards={cards}
           onCardClick={handleCardClick}
-          onCardDelete={handleDeleteCardClick}
-          onCardLike={handleCardLike}
+          //onCardDelete={handleDeleteCardClick}
+          //onCardLike={handleCardLike}
         />
         <Footer />
 
@@ -211,16 +211,7 @@ function App() {
 
         </PopupWithForm>
 
-        <PopupWithForm
-          isOpen={isDeleteCardPopupOpen}
-          onClose={closeAllPopups}
-          name={"confirm"}
-          idform={'confirm-popup-form'}
-          title={'Вы уверены?'}
-          popupid={'popup-delete-confirm'}
-          idsubmit={'popup-button-delete-confirm'}
-          submit={'Да'}
-        />
+        
 
 
       </div>

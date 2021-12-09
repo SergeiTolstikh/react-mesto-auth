@@ -16,7 +16,7 @@ function Card(props) {
         props.onCardClick(props.card)
     }
 
-    function handleCardDelete() {
+    function handleDeleteClick() {
         props.onCardDelete(props.card);
     }
 
@@ -27,7 +27,7 @@ function Card(props) {
     return (
         <div className="gallery__card">
 
-            <button className={cardDeleteButtonClassName} type="button" onClick={handleCardDelete}></button>
+            <button className={cardDeleteButtonClassName} type="button" onClick={handleDeleteClick}></button>
             <div className="gallery__image" onClick={handleClick} style={{ backgroundImage: `url(${props.link})` }} />
             <h2 className="gallery__text">{props.name}</h2>
             <button className={cardLikeButtonClassName} type="button" onClick={handleLikeClick}></button>

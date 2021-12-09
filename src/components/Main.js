@@ -46,7 +46,7 @@ function Main(props) {
 
 
     function handleDeleteCard(card) {
-        api.deleteCard(card)
+        api.deleteCard(card._id)
             .then(() => {
                 setCards((items) => items.filter((c) => c._id !== card._id && c))
             })

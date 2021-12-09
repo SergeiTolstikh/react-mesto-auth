@@ -24,6 +24,8 @@
 @import url(./blocks/gallery/__like/gallery__like.css);
 @import url(./blocks/gallery/__like-counter/gallery__like-counter.css);
 @import url(./blocks/gallery/__delete-card/gallery__delete-card.css);
+@import url(./blocks/gallery/__delete-card/_hidden/gallery__delete-card_hidden.css);
+@import url(./blocks/gallery/__delete-card/_visible/gallery__delete-card.visible.css);
 @import url(./blocks/gallery/__like/_on/gallery__like_on.css);
 
 @import url(./blocks/popup/popup.css);

@@ -1,8 +1,10 @@
-import React from "react";
+import React, {useEffect} from "react";
 import Header from "./Header";
 import Footer from "./Footer";
 import Main from "./Main";
 import ImagePopup from "./ImagePopup";
+import api from "../utils/Api";
+import { CurrentUserContext } from "../constexts/CurrentUserContext";
 import PopupWithForm from "./PopupWithForm";
 
 
@@ -13,6 +15,45 @@ function App() {
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = React.useState(false)
   const [isDeleteCardPopupOpen, setisDeleteCardPopupOpen] = React.useState(false)
   const [selectedCard, setSelectedCard] = React.useState(null)
+  const [currentUser, setCurrentUser] = React.useState({})
+  const [cards, setCards] = React.useState([])
+
+
+  useEffect(() => {
+    Promise.all([api.getUserInfo(), api.getInitialCards()])
+      .then(([user, cards]) => {
+        setCurrentUser(user)
+        setCards(cards)
+      })
+      .catch((err) => {
+        console.log(`Ошибка загрузки данных: ${err}`)
+      })
+  }, [])
+
+
+
+  function handleCardLike(card) {
+    const isLiked = card.likes.some(i => i._id === currentUser._id)
+
+    if (!isLiked) {
+        api.putCardLike(card._id)
+            .then((newCard) => {
+                setCards((state) => state.map((c) => c._id === card._id ? newCard : c));
+            })
+            .catch((err) => {
+                console.log(`Ошибка при установке лайка: ${err}`)
+            })
+    } else {
+        api.deleteCardLike(card._id)
+            .then((newCard) => {
+                setCards((state) => state.map((c) => c._id === card._id ? newCard : c));
+            })
+            .catch((err) => {
+                console.log(`Ошибка при отмене лайка: ${err}`)
+            })
+    }
+}
+
 
   function handleCardClick(card) {
     setSelectedCard(card)
@@ -45,32 +86,35 @@ function App() {
 
 
   return (
-    <div className="App" style={{backgroundColor: 'rgba(0, 0, 0, 1)'}}>
-      <Header />
-      <Main
-        onEditAvatar={handleEditAvatarClick}
-        onEditProfile={handleEditProfileClick}
-        onAddPlace={handleAddPlaceClick}
-        onCardClick={handleCardClick}
-        onCardDelete={handleDeleteCardClick}
-      />
-      <Footer />
+    <CurrentUserContext.Provider value={currentUser}>
+      <div className="App" style={{ backgroundColor: 'rgba(0, 0, 0, 1)' }}>
+        <Header />
+        <Main
+          onEditAvatar={handleEditAvatarClick}
+          onEditProfile={handleEditProfileClick}
+          onAddPlace={handleAddPlaceClick}
+          cards={cards}
+          onCardClick={handleCardClick}
+          onCardDelete={handleDeleteCardClick}
+          onCardLike={handleCardLike}
+        />
+        <Footer />
 
-      <ImagePopup
+        <ImagePopup
           card={selectedCard}
           onClose={closeAllPopups}
-          />
+        />
 
-      <PopupWithForm
-        isOpen={isEditProfilePopupOpen}
-        onClose={closeAllPopups}
-        name={"profile"}
-        idform={'profile-popup-form'}
-        title={'Редактировать профиль'}
-        popupid={'profile-popup'}
-        idsubmit={'popup-button-profile'}
-        submit={'Сохранить'}>
-        
+        <PopupWithForm
+          isOpen={isEditProfilePopupOpen}
+          onClose={closeAllPopups}
+          name={"profile"}
+          idform={'profile-popup-form'}
+          title={'Редактировать профиль'}
+          popupid={'profile-popup'}
+          idsubmit={'popup-button-profile'}
+          submit={'Сохранить'}>
+
           <>
             <fieldset className="popup__input-container">
               <input
@@ -97,19 +141,19 @@ function App() {
               <span className="popup__error popup__info-error" />
             </fieldset>
           </>
-        
-      </PopupWithForm>
 
-      <PopupWithForm
-        isOpen={isAddPlacePopupOpen}
-        onClose={closeAllPopups}
-        name={"gallery"}
-        idform={'gallery-popup-form'}
-        title={'Новое место'}
-        popupid={'gallery-popup'}
-        idsubmit={'popup-button-gallery'}
-        submit={'Создать'}>
-        
+        </PopupWithForm>
+
+        <PopupWithForm
+          isOpen={isAddPlacePopupOpen}
+          onClose={closeAllPopups}
+          name={"gallery"}
+          idform={'gallery-popup-form'}
+          title={'Новое место'}
+          popupid={'gallery-popup'}
+          idsubmit={'popup-button-gallery'}
+          submit={'Создать'}>
+
           <>
             <fieldset className="popup__input-container">
               <input
@@ -136,19 +180,19 @@ function App() {
               <span className="popup__error popup__picture-error" />
             </fieldset>
           </>
-        
-      </PopupWithForm>
 
-      <PopupWithForm
-        isOpen={isEditAvatarPopupOpen}
-        onClose={closeAllPopups}
-        name={"avatar"}
-        idform={'avatar-popup-form'}
-        title={'Обновить аватар'}
-        popupid={'popup-avatar'}
-        idsubmit={'popup-button-avatar'}
-        submit={'Сохранить'}>
-        
+        </PopupWithForm>
+
+        <PopupWithForm
+          isOpen={isEditAvatarPopupOpen}
+          onClose={closeAllPopups}
+          name={"avatar"}
+          idform={'avatar-popup-form'}
+          title={'Обновить аватар'}
+          popupid={'popup-avatar'}
+          idsubmit={'popup-button-avatar'}
+          submit={'Сохранить'}>
+
           <>
             <fieldset className="popup__input-container">
               <input
@@ -164,22 +208,23 @@ function App() {
               <span className="popup__error popup__error_position popup__avatar-input-error" />
             </fieldset>
           </>
-        
-      </PopupWithForm>
 
-      <PopupWithForm
-        isOpen={isDeleteCardPopupOpen}
-        onClose={closeAllPopups}
-        name={"confirm"}
-        idform={'confirm-popup-form'}
-        title={'Вы уверены?'}
-        popupid={'popup-delete-confirm'}
-        idsubmit={'popup-button-delete-confirm'}
-        submit={'Да'}
-      />
+        </PopupWithForm>
+
+        <PopupWithForm
+          isOpen={isDeleteCardPopupOpen}
+          onClose={closeAllPopups}
+          name={"confirm"}
+          idform={'confirm-popup-form'}
+          title={'Вы уверены?'}
+          popupid={'popup-delete-confirm'}
+          idsubmit={'popup-button-delete-confirm'}
+          submit={'Да'}
+        />
 
 
-    </div>
+      </div>
+    </CurrentUserContext.Provider>
   );
 }
 

@@ -31,6 +31,39 @@ function App() {
       })
   }, [])
 
+  function handleCardLike(card) {
+    const isLiked = card.likes.some(i => i._id === currentUser._id)
+
+    if (!isLiked) {
+      api.putCardLike(card._id)
+        .then((newCard) => {
+          setCards((state) => state.map((c) => c._id === card._id ? newCard : c));
+        })
+        .catch((err) => {
+          console.log(`Ошибка при установке лайка: ${err}`)
+        })
+    } else {
+      api.deleteCardLike(card._id)
+        .then((newCard) => {
+          setCards((state) => state.map((c) => c._id === card._id ? newCard : c));
+        })
+        .catch((err) => {
+          console.log(`Ошибка при отмене лайка: ${err}`)
+        })
+    }
+  }
+
+
+  function handleDeleteCard(card) {
+    api.deleteCard(card._id)
+      .then(() => {
+        setCards((items) => items.filter((c) => c._id !== card._id && c))
+      })
+      .catch((err) => {
+        console.log(`Ошибка удаления карточки: ${err}`)
+      })
+  }
+
 
   function handleUpdateUser(data) {
     api.setUserInfo(data)
@@ -45,14 +78,14 @@ function App() {
 
   function handleUpdateAvatar(data) {
     api.setUserAvatar(data)
-        .then((newAvatar) => {
-          setCurrentUser(newAvatar)
-          closeAllPopups()
-        })
-        .catch((err) => {
-            console.log(`Не удалось обновить аватар: ${err}`)
-        })
-}
+      .then((newAvatar) => {
+        setCurrentUser(newAvatar)
+        closeAllPopups()
+      })
+      .catch((err) => {
+        console.log(`Не удалось обновить аватар: ${err}`)
+      })
+  }
 
 
   function handleCardClick(card) {
@@ -89,6 +122,8 @@ function App() {
           onAddPlace={handleAddPlaceClick}
           cards={cards}
           onCardClick={handleCardClick}
+          onCardLike={handleCardLike}
+          onCardDelete={handleDeleteCard}
         />
         <Footer />
 

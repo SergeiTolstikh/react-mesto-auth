@@ -1,28 +1,9 @@
-import React/*, { useEffect }*/ from "react";
-//import api from "../utils/Api";
+import React from "react";
 import Card from "./Card";
 import { CurrentUserContext } from "../constexts/CurrentUserContext";
 
 function Main(props) {
     const currentUser = React.useContext(CurrentUserContext)
-
-    //const [userAvatar, setUserAvatar] = React.useState('');
-    //const [userName, setUserName] = React.useState('');
-    //const [userDescription, setUserDescription] = React.useState('');
-
-    /*const [cards, setCards] = React.useState([])
-    useEffect(() => {
-        api.getPageInfo()
-            .then(([user, cards]) => {
-                //setUserAvatar(user.avatar);
-                //setUserName(user.name);
-                //setUserDescription(user.about);
-                setCards(cards);
-            })
-            .catch((err) => { console.log(`Ошибка загрузки: ${err}`) })
-    }, [])*/
-
-    
 
     return (
 
@@ -59,11 +40,6 @@ function Main(props) {
 
         </main>)
 
-    //function handleEditAvatarClick() { document.querySelector('#popup-avatar').classList.add('popup_opened') }
-
-    //function handleEditProfileClick() { document.querySelector('#profile-popup').classList.add('popup_opened') }
-
-    //function handleAddPlaceClick() { document.querySelector('#gallery-popup').classList.add('popup_opened') }
 }
 
 export default Main

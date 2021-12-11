@@ -5,9 +5,9 @@ import Main from "./Main";
 import ImagePopup from "./ImagePopup";
 import api from "../utils/Api";
 import { CurrentUserContext } from "../constexts/CurrentUserContext";
-import PopupWithForm from "./PopupWithForm";
 import EditProfilePopup from "./EditProfilePopup";
 import EditAvatarPopup from "./EditAvatarPopup";
+import AddPlacePopup from "./AddPlacePopup";
 
 
 function App() {
@@ -18,7 +18,8 @@ function App() {
   const [selectedCard, setSelectedCard] = React.useState(null)
   const [currentUser, setCurrentUser] = React.useState({})
   const [cards, setCards] = React.useState([])
-
+  //console.log(cards)
+  //console.log(currentUser)
 
   useEffect(() => {
     Promise.all([api.getUserInfo(), api.getInitialCards()])
@@ -33,7 +34,7 @@ function App() {
 
   function handleCardLike(card) {
     const isLiked = card.likes.some(i => i._id === currentUser._id)
-
+    
     if (!isLiked) {
       api.putCardLike(card._id)
         .then((newCard) => {
@@ -72,7 +73,7 @@ function App() {
         closeAllPopups()
       })
       .catch((err) => {
-        console.log(`Не удалось обновить профиль: ${err}`)
+        console.log(`Ошибка обновления профиля: ${err}`)
       })
   }
 
@@ -83,7 +84,18 @@ function App() {
         closeAllPopups()
       })
       .catch((err) => {
-        console.log(`Не удалось обновить аватар: ${err}`)
+        console.log(`Ошибка обновления аватара: ${err}`)
+      })
+  }
+
+  function handleAddPlaceSubmit(data) {
+    api.postNewCard(data)
+      .then((newCard) => {
+        setCards([newCard, ...cards])
+        closeAllPopups()
+      })
+      .catch((err) => {
+        console.log(`Ошибка при добавлении карточки: ${err}`)
       })
   }
 
@@ -138,44 +150,11 @@ function App() {
           onUpdateUser={handleUpdateUser}
         />
 
-        <PopupWithForm
+        <AddPlacePopup
           isOpen={isAddPlacePopupOpen}
           onClose={closeAllPopups}
-          name={"gallery"}
-          idform={'gallery-popup-form'}
-          title={'Новое место'}
-          popupid={'gallery-popup'}
-          idsubmit={'popup-button-gallery'}
-          submit={'Создать'}>
-
-          <>
-            <fieldset className="popup__input-container">
-              <input
-                type="text"
-                name="name"
-                className="popup__input popup__input_item_name-profile-input"
-                id="popup__newplace"
-                placeholder="Название"
-                minLength="2"
-                maxLength="40"
-                required
-              />
-              <span className="popup__error popup__newplace-error" />
-              <input
-                type="url"
-                name="link"
-                className="popup__input popup__input_item_url-gallery-input"
-                id="popup__picture"
-                placeholder="Ссылка на картинку"
-                minLength="2"
-                maxLength="200"
-                required
-              />
-              <span className="popup__error popup__picture-error" />
-            </fieldset>
-          </>
-
-        </PopupWithForm>
+          onAddPlace={handleAddPlaceSubmit}
+        />
 
         <EditAvatarPopup
           isOpen={isEditAvatarPopupOpen}

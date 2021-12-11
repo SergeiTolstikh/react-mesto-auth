@@ -72,7 +72,7 @@ class Api {
             .then(this._checkResponse);
     }
 
-    patchUserInfo(data) {
+    setUserInfo(data) {
         return fetch(`${this._address}/users/me`, {
             method: 'PATCH',
             headers: {
@@ -87,7 +87,7 @@ class Api {
             .then(this._checkResponse);
     }
 
-    patchUserAvatar(data) {
+    setUserAvatar(data) {
         return fetch(`${this._address}/users/me/avatar`, {
             method: 'PATCH',
             headers: {

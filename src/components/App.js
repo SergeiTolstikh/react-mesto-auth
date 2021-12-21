@@ -18,8 +18,6 @@ function App() {
   const [selectedCard, setSelectedCard] = React.useState(null)
   const [currentUser, setCurrentUser] = React.useState({})
   const [cards, setCards] = React.useState([])
-  //console.log(cards)
-  //console.log(currentUser)
 
   useEffect(() => {
     Promise.all([api.getUserInfo(), api.getInitialCards()])

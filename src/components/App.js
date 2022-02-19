@@ -1,8 +1,15 @@
 import React, { useEffect } from "react";
+import { Routes, Route } from "react-router-dom";
 import Header from "./Header";
 import Footer from "./Footer";
 import Main from "./Main";
 import ImagePopup from "./ImagePopup";
+
+import Login from "./Login";
+import Register from "./Register";
+import ProtectedRoute from "./ProtectedRoute";
+import * as auth from "../utils/auth"
+
 import api from "../utils/Api";
 import { CurrentUserContext } from "../constexts/CurrentUserContext";
 import EditProfilePopup from "./EditProfilePopup";
@@ -18,6 +25,10 @@ function App() {
   const [selectedCard, setSelectedCard] = React.useState(null)
   const [currentUser, setCurrentUser] = React.useState({})
   const [cards, setCards] = React.useState([])
+  //const [loader, setLoader] = React.useState(false)
+
+  //const [isLoggedin, setisLoggedin] = React.useState(false) //** */
+
 
   useEffect(() => {
     Promise.all([api.getUserInfo(), api.getInitialCards()])
@@ -32,7 +43,7 @@ function App() {
 
   function handleCardLike(card) {
     const isLiked = card.likes.some(i => i._id === currentUser._id)
-    
+
     if (!isLiked) {
       api.putCardLike(card._id)
         .then((newCard) => {
@@ -124,18 +135,46 @@ function App() {
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
-      <div className="App" style={{ backgroundColor: 'rgba(0, 0, 0, 1)' }}>
-        <Header />
-        <Main
-          onEditAvatar={handleEditAvatarClick}
-          onEditProfile={handleEditProfileClick}
-          onAddPlace={handleAddPlaceClick}
-          cards={cards}
-          onCardClick={handleCardClick}
-          onCardLike={handleCardLike}
-          onCardDelete={handleDeleteCard}
-        />
-        <Footer />
+      <div className="App">
+
+
+        <Routes> Основные роуты приложения
+          <Route path="/sign-in" element={
+            <>
+              <Header route="/sign-up" title='Регистрация' />
+              <Login />
+            </>
+          }>
+          </Route>
+
+          <Route path="/sign-up" element={
+            <>
+              <Header title="Войти" route="/sign-in" />
+              <Register />
+            </>
+          }>
+          </Route>
+
+          <Route exact path="/" element={
+            <>
+              <Header route="/" mail="example@ya.ru" />
+              <ProtectedRoute
+                component={Main}
+                isLogged={true}
+                onEditAvatar={handleEditAvatarClick}
+                onEditProfile={handleEditProfileClick}
+                onAddPlace={handleAddPlaceClick}
+                cards={cards}
+                onCardClick={handleCardClick}
+                onCardLike={handleCardLike}
+                onCardDelete={handleDeleteCard}
+              />
+              <Footer />
+            </>
+          }>
+          </Route>
+        </Routes>
+
 
         <ImagePopup
           card={selectedCard}

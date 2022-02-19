@@ -1,0 +1,28 @@
+.login__button {
+    width: 100%;
+    margin: 216px 0 0;
+    padding: 14px 84px;
+    font-size: 18px;
+    line-height: 21.78px;
+    cursor: pointer;
+    transition: opacity 0.3s linear;
+    border-right: 2px;
+    background-color: rgba(255, 255, 255, 1);
+    color: rgba(0, 0, 0, 1);
+    border: none;
+}
+
+.login__button:hover {
+    opacity: 0.6;
+}
+
+@media screen and (max-width: 768px) {
+    .login__button {
+        line-height: 19.36px;
+        min-width: 230px;
+        margin: 173px 0 0;
+        padding: 14px 35px;
+        font-size: 16px;
+     
+    }
+}

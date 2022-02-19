@@ -1,6 +1,9 @@
 @import url(./vendor/fonts/fonts.css);
 @import url(./blocks/header/header.css);
 @import url(./blocks/header/__logo/header__logo.css);
+@import url(./blocks/header/__nav/header__nav.css);
+@import url(./blocks/header/__status-text/header__status-text.css);
+@import url(./blocks/header/__button/header__button.css);
 
 @import url(./blocks/footer/footer.css);
 @import url(./blocks/footer/__author/footer__author.css);
@@ -53,3 +56,13 @@
 @import url(./blocks/popup/__error/popup__error.css);
 @import url(./blocks/popup/__error/_visible/popup__error_visible.css);
 @import url(./blocks/popup/__error/_position/popup__error_position.css);
+
+@import url(./blocks/login/login.css);
+@import url(./blocks/login/__title/login__title.css);
+@import url(./blocks/login/__form/login__form.css);
+@import url(./blocks/login/__input/login__input.css);
+@import url(./blocks/login/__button/login__button.css);
+
+body {
+    background-color: rgba(0, 0, 0, 1);
+}

@@ -2,13 +2,14 @@
     width: 100%;
     margin: 216px 0 0;
     padding: 14px 84px;
+    font-family: 'Inter', 'Arial', 'sans-serif';
     font-size: 18px;
     line-height: 21.78px;
     cursor: pointer;
-    transition: opacity 0.3s linear;
     border-right: 2px;
     background-color: rgba(255, 255, 255, 1);
     color: rgba(0, 0, 0, 1);
+    transition: opacity 0.3s linear;
     border: none;
 }
 

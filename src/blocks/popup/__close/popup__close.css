@@ -31,6 +31,6 @@
 @media screen and (max-width: 468px) {
     .popup__close {
         margin-left: -18px;
-        margin-top: calc(-50px + (-58 + 50) * ((100vw - 320px) / 148));
+        margin-top: calc(-44px + (-58 + 44) * ((100vw - 320px) / 148));
     }
 }

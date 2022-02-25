@@ -10,13 +10,13 @@
 
 @media screen and (max-width: 636px) {
     .header__logo {
-        padding-left: calc(27px + (0 - 27) * ((100vw - 425px) / 211));
+        padding-left: calc(30px + (0 - 30) * ((100vw - 425px) / 211));
     }
 }
 
 @media screen and (max-width: 425px) {
     .header__logo {
         max-width: 103.74px;
-        padding-left: 27px;
+        padding-left: 30px;
     }
 }

@@ -110,7 +110,7 @@ class Api {
 
     getPageInfo() {
         return Promise.all([this.getUserInfo(), this.getInitialCards()]);
-      }
+    }
 
 }
 
@@ -118,6 +118,7 @@ const api = new Api({
     baseUrl: 'https://mesto.nomoreparties.co/v1',
     groupId: 'cohort-28',
     token: '7ab77057-a030-4fc1-abd5-bdd9c6f29070',
-  });
+});
 
 export default api
+

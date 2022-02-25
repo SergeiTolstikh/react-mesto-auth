@@ -1,44 +1,51 @@
-export const BASE_URL = 'https://auth.nomoreparties.co'
+class Auth {
+  constructor(config) {
+    this._baseUrl = config.url;
+    this._headers = config.headers;
+  }
 
-export function register(email, password) {
-    return fetch(`${BASE_URL}/signup`, {
-        method: 'POST',
-        headers: {
-            'Accept': 'application/json',
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify({ email, password })
-    })
-        .then(checkRes)
-}
-
-export function login(email, password) {
-    return fetch(`${BASE_URL}/signin`, {
-        method: 'POST',
-        headers: {
-            'Accept': 'application/json',
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify({ email, password })
-    })
-        .then(checkRes)
-}
-
-export function checkToken(jwt) {
-    return fetch(`${BASE_URL}/users/me`, {
-        method: 'GET',
-        headers: {
-            'Accept': 'application/json',
-            "Content-Type": "application/json",
-            "Authorization": `Bearer ${jwt}`
-        }
-    })
-        .then(checkRes)
-}
-
-function checkRes(res) {
+  _checkRes(res) {
     if (res.ok) {
-        return res.json()
+      return res.json();
     }
-    return Promise.reject(res.status)
+    return Promise.reject(`Ошибка: ${res.status}`);
+  }
+
+  register(email, password) {
+    return fetch(`${this._baseUrl}/signup`, {
+      headers: this._headers,
+      method: 'POST',
+      body: JSON.stringify({ email, password }),
+    })
+      .then((res) => this._checkRes(res));
+  }
+
+  login(email, password) {
+    return fetch(`${this._baseUrl}/signin`, {
+      headers: this._headers,
+      method: 'POST',
+      body: JSON.stringify({ email, password }),
+    })
+      .then((res) => this._checkRes(res));
+  }
+
+  checkToken(jwt) {
+    return fetch(`${this._baseUrl}/users/me`, {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${jwt}`,
+      },
+      method: 'GET',
+    })
+      .then((res) => this._checkRes(res));
+  }
 }
+
+const auth = new Auth({
+  url: 'https://auth.nomoreparties.co',
+  headers: {
+    'Content-Type': 'application/json',
+  },
+});
+
+export default auth

@@ -1,4 +1,5 @@
 class Auth {
+
   constructor(config) {
     this._baseUrl = config.url;
     this._headers = config.headers;
@@ -47,5 +48,6 @@ const auth = new Auth({
     'Content-Type': 'application/json',
   },
 });
+
 
 export default auth

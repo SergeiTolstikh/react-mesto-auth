@@ -8,7 +8,7 @@ import ImagePopup from "./ImagePopup";
 import Login from "./Login";
 import Register from "./Register";
 import ProtectedRoute from "./ProtectedRoute";
-import auth from "../utils/Auth";
+import auth from "../utils/Authorizacion";
 import InfoTooltip from "./InfoTooltip";
 import checkOK from "../images/checkOK.svg"
 import checkFail from "../images/checkFail.svg"
